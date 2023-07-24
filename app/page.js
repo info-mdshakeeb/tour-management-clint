@@ -1,5 +1,6 @@
 import Experience from "@/components/Experience/Experience";
 import Footer from "@/components/Footer/Footer";
+import Gallery from "@/components/Gallery/Gallery";
 import HeroMain from "@/components/Hero/HeroMain";
 import MainNav from "@/components/NavBars/MainNav";
 import Explore from "@/components/services/Explore";
@@ -16,6 +17,9 @@ export default function Home() {
             </div>
             <div className="mb-20">
                 <Experience />
+            </div>
+            <div className="mb-20">
+                <Gallery />
             </div>
             <Footer />
         </div>
