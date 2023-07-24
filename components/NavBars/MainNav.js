@@ -15,7 +15,7 @@ const MainNav = () => {
             <li><Link className={` ${pathname === "/tours" ? 'text-gray-900' : ''} text-gray-400 hover:text-gray-900 duration-300`} href={'/tours'}>Tours</Link></li>
         </>
     return (
-        <div className="sticky top-0  shadow-md z-50 ">
+        <div className="sticky top-0  shadow-md z-50 bg-base-100 ">
             <Container className=" ">
                 <div className="navbar ">
                     <div className="navbar-start" >

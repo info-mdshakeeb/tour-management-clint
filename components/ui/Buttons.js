@@ -11,8 +11,8 @@ export const PrimaryButton = ({ children, className, link }) => {
                     {children}
                 </Link> :
                 <button
-                    disabled
-                    className="btn btn-sm  lowercase">
+
+                    className="btn btn-sm hover:scale-105 hover:bg-[#faa935] duration-300 text-white font-[1.1rem] py-[0.4rem] px-[1.5rem] bg-[#faa935] border-none rounded-[50px] lowercase">
                     {children}
                 </button>
             }
