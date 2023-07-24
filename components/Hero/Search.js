@@ -17,24 +17,26 @@ const Search = () => {
         <div className="bg-white border max-w-[600px] py-4 md:py-1 p-2 rounded-3xl mb-3 shadow-xl mt-5 md:mt-0 duration-300">
             <form onSubmit={handleSubmit}>
                 <div className=" flex flex-col md:flex-row justify-around items-center w-full gap-4">
-                    <div className="flex  items-center gap-x-3">
+                    <div className="flex  items-center gap-x-3 border-r">
                         <BiLocationPlus />
                         <div className="flex flex-row gap-x-3 md:flex-col md:gap-x-0">
                             <p>Location</p>
                             <input
                                 name="location"
                                 required
-                                type="text" placeholder="Search" className="md:w-[100px] " />
+                                defaultValue={"london"}
+                                type="text" placeholder="place " className="md:w-[100px] outline-none " />
                         </div>
                     </div>
-                    <div className="flex items-center gap-3">
+                    <div className="flex items-center gap-3 border-r">
                         <BiLocationPlus />
                         <div className="flex flex-row gap-x-3 md:gap-x-0 md:flex-col">
                             <p>Destination</p>
                             <input
                                 name="destination"
                                 required
-                                type="text" placeholder="Search" className="md:w-[100px]" />
+                                defaultValue={"300km"}
+                                type="text" placeholder="destination k/m" className="md:w-[100px] outline-none " />
                         </div>
                     </div>
                     <div className="flex items-center gap-x-3">
@@ -44,7 +46,8 @@ const Search = () => {
                             <input
                                 name="maxPeople"
                                 required
-                                type="number" placeholder="Search" className="md:w-[100px]" />
+                                defaultValue={"2"}
+                                type="number" placeholder="Peoples" className="md:w-[100px] outline-none " />
                         </div>
                     </div>
                     <PrimaryButton link="">

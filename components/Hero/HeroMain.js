@@ -14,13 +14,13 @@ const HeroMain = () => {
                     <div className="md:w-1/2  items-center my-10">
                         <div className="flex items-center mb-4">
                             <div className="">
-                                <Subtitle className="">
+                                <Subtitle className="font-light">
                                     Know Before You go
                                 </Subtitle>
                             </div>
                             <Image className="w-10 h-10" src={worldImage} />
                         </div>
-                        <Title className='text-3xl md:text-2xl lg:text-4xl mb-4 duration-300'>
+                        <Title className='text-3xl md:text-2xl lg:text-4xl mb-4 duration-300 font-extrabold'>
                             Traveling opens the door to creating {''}
                             <span className="text-orange-400"> Memories</span>
                         </Title>
