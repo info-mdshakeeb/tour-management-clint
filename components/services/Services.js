@@ -8,9 +8,6 @@ import { Subtitle, Title } from "../ui/Title";
 
 
 const Services = () => {
-
-
-
     const servicerData = [
         {
             title: "Weather Calculator",
@@ -28,11 +25,7 @@ const Services = () => {
             icon: <BiSolidCustomize />
         }
     ]
-
-
-
     return (
-
         <Container className='my-7'>
             <div className="grid grid-cols-9 gap-4 duration-300">
                 <div className="col-span-9 md:col-span-9 lg:col-span-3">
