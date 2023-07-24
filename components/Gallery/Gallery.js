@@ -9,6 +9,7 @@ import img4 from '../../assets/images/gallery-04.jpg';
 import img5 from '../../assets/images/gallery-05.jpg';
 import img6 from '../../assets/images/gallery-06.jpg';
 import img7 from '../../assets/images/gallery-07.jpg';
+import Review from "../Review/Review";
 
 
 const Gallery = () => {
@@ -64,7 +65,7 @@ const Gallery = () => {
 
                 </div>
             </div>
-
+            <Review />
 
         </Container>
     );

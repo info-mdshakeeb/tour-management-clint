@@ -11,6 +11,7 @@
   "dependencies": {
     "@next/eslint-plugin-next": "^13.4.12",
     "@reduxjs/toolkit": "^1.9.5",
+    "add": "^2.0.6",
     "antd": "^5.7.2",
     "autoprefixer": "10.4.14",
     "eslint": "8.45.0",
@@ -22,7 +23,10 @@
     "react-dom": "18.2.0",
     "react-icons": "^4.10.1",
     "react-redux": "^8.1.1",
-    "tailwindcss": "3.3.3"
+    "react-slick": "^0.29.0",
+    "slick-carousel": "^1.8.1",
+    "tailwindcss": "3.3.3",
+    "yarn": "^1.22.19"
   },
   "devDependencies": {
     "daisyui": "^3.3.1"
