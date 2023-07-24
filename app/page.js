@@ -1,3 +1,4 @@
+import Cat from "@/components/Cat/cat";
 import Experience from "@/components/Experience/Experience";
 import Footer from "@/components/Footer/Footer";
 import Gallery from "@/components/Gallery/Gallery";
@@ -18,8 +19,11 @@ export default function Home() {
             <div className="mb-20">
                 <Experience />
             </div>
-            <div className="mb-20">
+            <div className="">
                 <Gallery />
+            </div>
+            <div className="">
+                <Cat />
             </div>
             <Footer />
         </div>

@@ -110,7 +110,7 @@ const Review = () => {
     return (
         <div className="overflow-hidden h-[500px] mb-10">
             <Container className={'mt-20'}>
-                <div className=" -ml-7">
+                <div className=" md:-ml-7">
                     <Subtitle >
                         Fans Love
                     </Subtitle>
