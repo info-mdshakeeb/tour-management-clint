@@ -1,20 +1,19 @@
 'use client'
 import Link from "next/link";
+import { usePathname } from 'next/navigation';
 import { useState } from "react";
 import { PrimaryButton } from "../ui/Buttons";
 import Container from "../ui/Container";
 
 const MainNav = () => {
-
+    const [user, setUser] = useState(true)
+    const pathname = usePathname()
     const navItems =
         <>
-            <li><Link href='/'>Home</Link></li>
-            <li><Link href={'/about'}>About</Link></li>
-            <li><Link href={'/tours'}>Tours</Link></li>
+            <li><Link className={` ${pathname === "/" ? 'text-gray-900' : ''} text-gray-400 hover:text-gray-900 duration-300`} href='/'>Home</Link></li>
+            <li><Link className={` ${pathname === "/about" ? 'text-gray-900' : ''}text-gray-400 hover:text-gray-900 duration-300`} href={'/about'}>About</Link></li>
+            <li><Link className={` ${pathname === "/tours" ? 'text-gray-900' : ''} text-gray-400 hover:text-gray-900 duration-300`} href={'/tours'}>Tours</Link></li>
         </>
-
-
-    const [user, setUser] = useState(true)
     return (
         <div className="sticky top-0  shadow-md z-50 ">
             <Container className=" ">
@@ -28,10 +27,7 @@ const MainNav = () => {
                                 {navItems}
                             </ul>
                         </div>
-                        <a href='/' className="btn btn-ghost  text-xl font-bold 
-                ">
-                            SHakeeb
-                        </a>
+                        <a href='/' className="btn btn-ghost  text-xl font-bold ">SHakeeb </a>
                     </div>
                     <div className=" w-full flex justify-end  gap-8 ">
                         <div className="hidden lg:flex gap-3 list-none ">
