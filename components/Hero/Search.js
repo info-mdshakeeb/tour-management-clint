@@ -12,13 +12,9 @@ const Search = () => {
         const location = form.location.value
         const maxPeople = form.maxPeople.value
         console.log(destination, location, maxPeople)
-
-
     }
-
-
     return (
-        <div className="bg-white border max-w-[600px] py-4 md:py-0 p-2 rounded-3xl mb-3 shadow-xl mt-5 md:mt-0 duration-300">
+        <div className="bg-white border max-w-[600px] py-4 md:py-1 p-2 rounded-3xl mb-3 shadow-xl mt-5 md:mt-0 duration-300">
             <form onSubmit={handleSubmit}>
                 <div className=" flex flex-col md:flex-row justify-around items-center w-full gap-4">
                     <div className="flex  items-center gap-x-3">

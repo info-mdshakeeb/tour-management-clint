@@ -8,7 +8,7 @@ import Search from './Search';
 
 const HeroMain = () => {
     return (
-        <Container>
+        <Container className="min-h-[80vh] justify-center">
             <div className="flex justify-center">
                 <div className="md:flex gap-x-3 ">
                     <div className="md:w-1/2  items-center my-10">
