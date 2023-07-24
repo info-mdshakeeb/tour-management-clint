@@ -1,3 +1,4 @@
+import Experience from "@/components/Experience/Experience";
 import Footer from "@/components/Footer/Footer";
 import HeroMain from "@/components/Hero/HeroMain";
 import MainNav from "@/components/NavBars/MainNav";
@@ -10,7 +11,12 @@ export default function Home() {
             <MainNav />
             <HeroMain />
             <Services />
-            <Explore />
+            <div className="my-20">
+                <Explore />
+            </div>
+            <div className="mb-20">
+                <Experience />
+            </div>
             <Footer />
         </div>
     )
