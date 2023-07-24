@@ -7,12 +7,12 @@ export const PrimaryButton = ({ children, className, link }) => {
             {link ?
                 <Link
                     href={link}
-                    className={`bg-primary text-white px-4 py-2 rounded-md ${className}`}>
+                    className={`btn btn-sm hover:scale-105 hover:bg-[#faa935] duration-300 text-white font-[1.1rem] py-[0.4rem] px-[1.5rem] bg-[#faa935] border-none rounded-[50px] lowercase ${className}`}>
                     {children}
                 </Link> :
                 <button
                     disabled
-                    className=" btn btn-warn ">
+                    className="btn btn-sm  lowercase">
                     {children}
                 </button>
             }
@@ -20,19 +20,19 @@ export const PrimaryButton = ({ children, className, link }) => {
     )
 }
 
-export const SvgButton = ({ children, className, link }) => {
+export const SecondaryButton = ({ children, className, link }) => {
     return (
 
         <>
             {link ?
                 <Link
                     href={link}
-                    className={`bg-primary text-white px-4 py-2 rounded-md ${className}`}>
-                    {children}
+                    className={`bg-transparent font-[500] border-none ${className}`}>
+                    <label className="text-[1.1rem] text-[#0b2727]" > {children}</label>
                 </Link> :
                 <button
                     disabled
-                    className=" btn btn-warn ">
+                    className=" btn btn-sm ">
                     {children}
                 </button>
             }
