@@ -25,7 +25,7 @@ const HeroMain = () => {
                             <span className="text-orange-400"> Memories</span>
                         </Title>
                         <p>
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam, a beatae totam velit aut molestias corrupti ipsa iste tenetur inventore ipsam qui
+                            Endless horizons, laughter-filled adventures, and heartwarming connections—travel unveils a treasure trove of memories.
                         </p>
                     </div>
                     <div className="md:w-1/2 h-[350px] flex items-center">

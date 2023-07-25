@@ -11,17 +11,17 @@ const Services = () => {
     const servicerData = [
         {
             title: "Weather Calculator",
-            description: "Lorem ipsum dolor sit amet consectetur ",
+            description: "Meteorological magic in compact calculations. ",
             icon: <TiWeatherPartlySunny />
         },
         {
             title: "Best Tour Guide",
-            description: "Lorem ipsum dolor sit amet consectetur ",
+            description: "Expert storyteller, unforgettable experiences guaranteed.",
             icon: <FaPlaneDeparture />
         },
         {
             title: "Customize Your Trip",
-            description: "Lorem ipsum dolor sit amet consectetur ",
+            description: "Tailor-made adventures, your dreams, our execution.",
             icon: <BiSolidCustomize />
         }
     ]
@@ -38,7 +38,7 @@ const Services = () => {
                     </Title>
                 </div>
                 {servicerData.map((service, i) => (
-                    <div key={i} className="col-span-9 md:col-span-3 lg:col-span-2 flex flex-col gap-2 border-r border-b py-4 border-orange-200 shadow-sm">
+                    <div key={i} className="col-span-9 md:col-span-3 lg:col-span-2 flex flex-col gap-2 border-r border-b py-4 border-orange-200 shadow-sm text-xs ">
                         <div className="flex items-center justify-center w-10 h-10 rounded-full bg-[#faa935]">
                             {service.icon}
                         </div>

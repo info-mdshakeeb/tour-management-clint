@@ -22,7 +22,7 @@ export default function Home() {
             <div className="">
                 <Gallery />
             </div>
-            <div className="">
+            <div className="mb-20">
                 <Cat />
             </div>
             <Footer />
