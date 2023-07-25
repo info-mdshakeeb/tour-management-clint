@@ -14,10 +14,7 @@ export default function resister() {
     const tableData = [
         { label: 'name', name: 'name', type: 'name', placeholder: 'name', error: errors.name },
         { label: 'email', name: 'email', type: 'email', placeholder: 'email', error: errors.email },
-        {
-            label: 'password', name: 'password', type: 'password', placeholder: 'password',
-            error: errors.password
-        }]
+        { label: 'password', name: 'password', type: 'password', placeholder: 'password', error: errors.password }]
 
     const onSubmit = (data) => {
         const resisterData = {

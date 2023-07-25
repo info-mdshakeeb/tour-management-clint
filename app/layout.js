@@ -1,3 +1,4 @@
+import FirebaseProvider from '@/providers/FirebaseProvaider';
 import ReduxProvider from '@/providers/ReduxProvider';
 import { Space_Grotesk } from 'next/font/google';
 import './globals.css';
@@ -14,7 +15,9 @@ export default function RootLayout({ children }) {
             <body className={inter.className}>
                 <div className="">
                     <ReduxProvider>
-                        {children}
+                        <FirebaseProvider>
+                            {children}
+                        </FirebaseProvider>
                     </ReduxProvider>
                 </div>
             </body>
