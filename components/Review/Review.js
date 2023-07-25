@@ -7,21 +7,20 @@ import { Subtitle, Title } from "../ui/Title";
 
 const Review = () => {
     var settings = {
-        dots: true,
-        infinite: false,
+        dots: false,
+        infinite: true,
         slidesToShow: 4,
-        slidesToScroll: 4,
-        initialSlide: 0,
+        slidesToScroll: 1,
         autoplay: true,
-        speed: 500,
-        autoplaySpeed: 1000,
+        speed: 2000,
+        autoplaySpeed: 3500,
         cssEase: "linear",
         responsive: [
             {
                 breakpoint: 1024,
                 settings: {
                     slidesToShow: 3,
-                    slidesToScroll: 3,
+                    slidesToScroll: 1,
                     infinite: true,
                     dots: true
                 }
@@ -30,7 +29,7 @@ const Review = () => {
                 breakpoint: 600,
                 settings: {
                     slidesToShow: 2,
-                    slidesToScroll: 2,
+                    slidesToScroll: 1,
                     initialSlide: 2
                 }
             },
@@ -108,7 +107,7 @@ const Review = () => {
 
 
     return (
-        <div className="overflow-hidden h-[500px] mb-10">
+        <div className="overflow-hidden h-[500px] ">
             <Container className={'mt-20'}>
                 <div className=" md:-ml-7">
                     <Subtitle >
