@@ -83,7 +83,7 @@ const Booking = ({ tour }) => {
                 <div className="duration-300">
                     {person > 0 ?
                         <button
-                            className="btn btn-warning w-full mt-4 btn-sm">book Now</button>
+                            className="btn btn-warning w-full mt-4 btn-sm">Add to Cart Now</button>
                         :
                         <button
                             className="btn btn-warning w-full mt-4 btn-sm" disabled>book Now</button>
