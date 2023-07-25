@@ -19,7 +19,14 @@ const tours = [
             {
                 name: "jhon doe",
                 rating: 4.6,
+                comment: "this is the comment"
             },
+            {
+                name: "jhon ",
+                rating: 4,
+                comment: "this is the comment"
+            },
+
         ],
         avgRating: 4.5,
         photo: tourImg01,
@@ -68,6 +75,7 @@ const tours = [
             {
                 name: "jhon doe",
                 rating: 4.6,
+                comment: "this is the comment"
             },
         ],
         avgRating: 4.5,
@@ -86,6 +94,7 @@ const tours = [
             {
                 name: "jhon doe",
                 rating: 4.6,
+                comment: "this is the comment"
             },
         ],
         avgRating: 4.5,
@@ -104,6 +113,7 @@ const tours = [
             {
                 name: "jhon doe",
                 rating: 4.6,
+                comment: "this is the comment"
             },
         ],
         avgRating: 4.5,
@@ -122,6 +132,7 @@ const tours = [
             {
                 name: "jhon doe",
                 rating: 4.6,
+                comment: "this is the comment"
             },
         ],
         avgRating: 4.5,

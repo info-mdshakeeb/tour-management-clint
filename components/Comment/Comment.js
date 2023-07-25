@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { FaStar } from "react-icons/fa";
 
-const StarRatingForm = () => {
+const Comment = () => {
     const [rating, setRating] = useState(null);
     const [hover, setHover] = useState(null);
 
@@ -56,4 +56,4 @@ const StarRatingForm = () => {
     );
 };
 
-export default StarRatingForm;
+export default Comment;
