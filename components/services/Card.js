@@ -6,7 +6,7 @@ import { GrLocation } from "react-icons/gr";
 const Card = ({ tour }) => {
 
     return (
-        <Link href={''} className=" hover:scale-95 ease-out duration-300">
+        <Link href={`/tours/${tour?.id}`} className=" hover:scale-95 ease-out duration-300">
             <div className="card card-compact  bg-base-100 shadow-xl rounded-md">
                 <div className="relative">
                     <figure><Image src={tour?.photo} alt="Shoes" /></figure>
