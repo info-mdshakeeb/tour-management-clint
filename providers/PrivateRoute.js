@@ -24,7 +24,7 @@ const PrivateRoute = ({ children }) => {
     }, []);
     setTimeout(() => {
         setCustomLoading(false)
-    }, 600)
+    }, 700)
 
     if (loading || customLoading || !user) return <>
         <PrimaryLoading />
