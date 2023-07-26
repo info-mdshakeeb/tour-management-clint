@@ -14,6 +14,11 @@ export default function SideNav() {
             icon: <RiDashboardLine />,
             link: "/dashboard",
         },
+        {
+            name: "login",
+            icon: <RiDashboardLine />,
+            link: "/login",
+        },
         // {
         //     name: "Users",
         //     icon: <FiUsers />,
@@ -88,7 +93,7 @@ export default function SideNav() {
             </ul>
             <div className="hidden absolute bottom-0 lg:flex py-4 px-2 justify-between w-full  border-t border-gray-800 bg-black">
                 <a href="#" className="flex items-center gap-2 ">
-                    <img className="object-cover rounded-full h-7 w-7" src={user?.photoUrl} alt="avatar" />
+                    <img className="object-cover rounded-full h-7 w-7" src={user?.photoURL} alt="avatar" />
                     <span className="text-sm font-medium text-gray-200">{user?.displayName}</span>
                 </a>
                 <button

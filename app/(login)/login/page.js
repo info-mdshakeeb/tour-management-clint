@@ -3,12 +3,21 @@ import AlertMessage from "@/Hooks/Alert";
 import FormTemplate from "@/components/ui/FormTemplate";
 import { useFirebaseInfo } from "@/providers/FirebaseProvaider";
 import Link from "next/link";
+import { useRouter } from 'next/navigation';
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { useSelector } from "react-redux";
 
 export default function login() {
+
+
+    const router = useRouter()
     const { register, handleSubmit, formState: { errors }, reset } = useForm();
     const { GoogleLogin, loginEmail } = useFirebaseInfo()
+    const { location } = useSelector(state => state.utils)
+
+
+
     const { successMessage, errorMessage } = AlertMessage()
     const getUserCredentials = () => {
         const user = typeof window !== 'undefined' && localStorage ? localStorage.getItem('user') : null
@@ -41,10 +50,13 @@ export default function login() {
         GoogleLogin()
             .then(() => { loginFn("success", true) }).catch(error => loginFn(error.message, false))
     }
-
     const loginFn = (message, type) => {
         if (type) {
             successMessage(message)
+            router.push('/')
+            // if (location) {
+            //     router.push(location);
+            // }
             reset()
         } else {
             errorMessage(message)
@@ -55,6 +67,11 @@ export default function login() {
         { label: 'email', name: 'email', type: 'email', placeholder: 'email', def: email, error: errors.email },
         { label: 'password', name: 'password', type: 'password', placeholder: 'password', def: password, error: errors.password }
     ]
+
+    //redirectToRight path
+
+
+
     return (
         <div className="flex justify-center items-center h-screen">
             <div className=" w-full max-w-xs p-4  rounded-lg  shadow-md backdrop-blur-lg ">

@@ -5,12 +5,14 @@ import ImageUpload from "@/components/ImgUpload/ImgUpload";
 import FormTemplate from "@/components/ui/FormTemplate";
 import { useFirebaseInfo } from "@/providers/FirebaseProvaider";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 
 export default function resister() {
     const [uploadProgress, setUploadProgress] = useState(0);
     const { successMessage, errorMessage } = AlertMessage()
+    const router = useRouter();
     const [imageUrl, setImageUrl] = useState('');
     const { register, handleSubmit, formState: { errors }, reset } = useForm();
     const { CreateUserEP, updateProfilePic } = useFirebaseInfo()
@@ -41,6 +43,7 @@ export default function resister() {
             successMessage(message)
             reset()
             setImageUrl('')
+            router.push("/");
         } else {
             errorMessage(message)
         }
