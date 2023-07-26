@@ -1,15 +1,19 @@
 'use client'
 
+import AlertMessage from "@/Hooks/Alert";
 import ImageUpload from "@/components/ImgUpload/ImgUpload";
 import FormTemplate from "@/components/ui/FormTemplate";
+import { useFirebaseInfo } from "@/providers/FirebaseProvaider";
 import Link from "next/link";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 
 export default function resister() {
     const [uploadProgress, setUploadProgress] = useState(0);
+    const { successMessage, errorMessage } = AlertMessage()
     const [imageUrl, setImageUrl] = useState('');
     const { register, handleSubmit, formState: { errors }, reset } = useForm();
+    const { CreateUserEP, updateProfilePic } = useFirebaseInfo()
 
     const tableData = [
         { label: 'name', name: 'name', type: 'name', placeholder: 'name', error: errors.name },
@@ -23,9 +27,23 @@ export default function resister() {
             password: data.password,
             imageUrl
         }
+        CreateUserEP(data.email, data.password)
+            .then(rs =>
+                updateProfilePic(data.name, imageUrl)
+                    .then(res => CreateFn("create account", true))
+            ).catch(err =>
+                CreateFn(err.message, false)
+            )
+    }
 
-        console.log(resisterData);
-
+    const CreateFn = (message, type) => {
+        if (type) {
+            successMessage(message)
+            reset()
+            setImageUrl('')
+        } else {
+            errorMessage(message)
+        }
     }
 
     return (
