@@ -13,13 +13,11 @@ export default function RootLayout({ children }) {
     return (
         <html lang="en">
             <body className={inter.className}>
-                <div className="">
-                    <ReduxProvider>
-                        <FirebaseProvider>
-                            {children}
-                        </FirebaseProvider>
-                    </ReduxProvider>
-                </div>
+                <ReduxProvider>
+                    <FirebaseProvider>
+                        {children}
+                    </FirebaseProvider>
+                </ReduxProvider>
             </body>
         </html>
     )

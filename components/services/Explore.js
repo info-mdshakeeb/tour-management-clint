@@ -1,9 +1,27 @@
-import tours from "@/assets/data/tours";
+'use client'
+// import tours from "@/assets/data/tours";
+import { useGetServicesQuery } from "@/redux/api/apiSlice";
 import Container from "../ui/Container";
+import { PrimaryLoading } from "../ui/Loading";
 import { Subtitle, Title } from "../ui/Title";
 import Card from "./Card";
 
 const Explore = () => {
+    const { data, error, isLoading } = useGetServicesQuery(8)
+
+    if (isLoading) return <>
+        <div className="min-h-[90vh]">
+            <PrimaryLoading />
+        </div>
+    </>
+
+    if (error) return <>
+        <div className="min-h-[90vh] flex justify-center items-center">
+            data is not loaded
+        </div>
+
+    </>
+
     return (
         <Container>
             <div className="">
@@ -15,10 +33,8 @@ const Explore = () => {
                 </Title>
             </div>
             <div className="grid grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-4">
-                {tours.map(tour => <Card key={tour.id} tour={tour} />)}
+                {data?.data?.map(tour => <Card key={tour.id} tour={tour} />)}
             </div>
-
-
         </Container>
     );
 };

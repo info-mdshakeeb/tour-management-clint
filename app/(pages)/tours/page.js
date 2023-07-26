@@ -1,9 +1,18 @@
-import tours from "@/assets/data/tours";
+'use client'
 import Search from "@/components/Hero/Search";
 import Card from "@/components/services/Card";
 import Container from "@/components/ui/Container";
+import { PrimaryLoading } from "@/components/ui/Loading";
+import { useGetServicesQuery } from "@/redux/api/apiSlice";
 
 const page = () => {
+    const { data, error, isLoading } = useGetServicesQuery(undefined)
+
+    if (isLoading) return <>
+        <div className="h-screen flex items-center justify-center">
+            <PrimaryLoading />
+        </div>
+    </>
     return (
         <div className="">
             <div className="">
@@ -14,7 +23,7 @@ const page = () => {
                     <Search />
                     <div className="mt-10">
                         <div className="grid grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-4">
-                            {tours.map(tour => <Card key={tour.id} tour={tour} />)}
+                            {data?.data?.map(tour => <Card key={tour.id} tour={tour} />)}
                         </div>
                     </div>
                 </Container>

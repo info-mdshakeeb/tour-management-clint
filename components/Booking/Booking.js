@@ -5,9 +5,9 @@ import { AiOutlineStar } from "react-icons/ai";
 const Booking = ({ tour }) => {
     const [person, setPerson] = useState(1)
     const [selectedDate, setSelectedDate] = useState(new Date().toISOString().slice(0, 10))
-    let price = tour.price * person
-    let services = tour.price * 10 / 100 * person
-    let total = (tour.price + services) * person
+    let price = tour?.price * person
+    let services = tour?.price * 10 / 100 * person
+    let total = (tour?.price + services) * person
 
     const handleBooking = (e) => {
         e.preventDefault()
@@ -35,7 +35,7 @@ const Booking = ({ tour }) => {
                     <div className="flex gap-2 items-center">
                         <div className="">
                             <AiOutlineStar className="text-yellow-500" /></div>
-                        {tour?.reviews.length === 0 ? <p>No reviews</p> : <p>{tour?.avgRating} ({tour?.reviews.length}) </p>}
+                        {!tour?.reviews?.length ? <p>No reviews</p> : <p>{tour?.avgRating} ({tour?.reviews?.length}) </p>}
                     </div>
                 </div>
                 <hr className="my-5" />

@@ -4,12 +4,11 @@ import { AiOutlineStar } from "react-icons/ai";
 import { GrLocation } from "react-icons/gr";
 
 const Card = ({ tour }) => {
-
     return (
-        <Link href={`/tours/${tour?.id}`} className=" hover:scale-95 ease-out duration-300">
+        <Link href={`/tours/${tour?._id}`} className=" hover:scale-95 ease-out duration-300">
             <div className="card card-compact  bg-base-100 shadow-xl rounded-md">
                 <div className="relative">
-                    <figure><Image src={tour?.photo} alt="Shoes" /></figure>
+                    <figure><Image src={tour?.photo} alt="Shoes" width={300} height={200} /></figure>
                     <div className="absolute  right-0 top-[148px]">{tour?.featured && <span className=" bg-yellow-500 text-white px-1">Featured</span>}</div>
                 </div>
                 <div className="card-body">
@@ -21,7 +20,7 @@ const Card = ({ tour }) => {
                         <div className="flex gap-2 items-center">
                             <div className="">
                                 <AiOutlineStar className="text-yellow-500" /></div>
-                            {tour?.reviews.length === 0 ? <p>No reviews</p> : <p>{tour?.avgRating} ({tour?.reviews.length}) </p>}
+                            {!tour?.reviews?.length ? <p>No reviews</p> : <p>{tour?.avgRating} ({tour?.reviews.length}) </p>}
 
                         </div>
                     </div>
