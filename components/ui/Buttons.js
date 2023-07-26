@@ -39,3 +39,13 @@ export const SecondaryButton = ({ children, className, link }) => {
         </>
     )
 }
+
+export function DrawerButton({ htmlFor, className }) {
+    return (
+        <label
+            htmlFor={htmlFor} className={`drawer-button border-none cursor-pointer lg:hidden  ${className}`}>
+            <svg
+                xmlns="http://www.w3.org/2000/svg" className={`h-7 w-8 duration-500`} fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
+        </label >
+    )
+}

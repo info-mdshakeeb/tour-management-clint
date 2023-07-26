@@ -2,7 +2,9 @@ const { createSlice } = require("@reduxjs/toolkit");
 
 
 const initialState = {
-    dark: "hello"
+    dark: "hello",
+    location: null
+
 }
 const utilsSlice = createSlice({
     name: "utils",
@@ -10,6 +12,9 @@ const utilsSlice = createSlice({
     reducers: {
         setTheme: (state) => {
             state.dark = !state.dark
+        },
+        redirectToRight: (state, action) => {
+            state.redirectToRight = action.payload
         }
     }
 })

@@ -4,7 +4,7 @@ import { GoogleAuthProvider, createUserWithEmailAndPassword, getAuth, onAuthStat
 import { createContext, useContext, useEffect, useState } from 'react';
 
 export const AuthUser = createContext();
-const auth = getAuth(app);
+export const auth = getAuth(app);
 const provider = new GoogleAuthProvider();
 const FirebaseProvider = ({ children }) => {
     const [user, setUser] = useState('')
