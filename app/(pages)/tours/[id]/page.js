@@ -3,7 +3,7 @@ import Booking from "@/components/Booking/Booking";
 import Comment from "@/components/Comment/Comment";
 import Container from "@/components/ui/Container";
 import { PrimaryLoading } from "@/components/ui/Loading";
-import { useSingleServicesQuery } from "@/redux/api/apiSlice";
+import { useSingleServicesQuery } from "@/redux/feature/Services/servicesApi";
 import Image from "next/image";
 import { AiOutlineStar } from "react-icons/ai";
 import { GrLocation } from "react-icons/gr";
@@ -11,8 +11,8 @@ import { GrLocation } from "react-icons/gr";
 
 const page = ({ params }) => {
 
-    const { data, isLoading, error } = useSingleServicesQuery(params.id)
-    // const tour = tours.find(t => t.id === params.id)
+    const { data, isLoading } = useSingleServicesQuery(params.id)
+
 
     if (isLoading) return <>
         <div className="h-screen flex items-center justify-center">

@@ -25,42 +25,42 @@ const Gallery = () => {
                 </Title>
             </div>
 
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                <div class="grid gap-4">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div className="grid gap-4">
                     <div>
-                        <Image class="h-auto max-w-full rounded-lg hover:scale-95 duration-300 cursor-pointer" src={img1} alt="" />
+                        <Image className="h-auto max-w-full rounded-lg hover:scale-95 duration-300 cursor-pointer" src={img1} alt="" />
                     </div>
                     <div>
-                        <Image class="h-auto max-w-full rounded-lg hover:scale-95 duration-300 cursor-pointer" src={img3} alt="" />
-                    </div>
-
-                </div>
-                <div class="grid gap-4">
-                    <div>
-                        <Image class="h-auto max-w-full rounded-lg hover:scale-95 duration-300 cursor-pointer" src={img2} alt="" />
-                    </div>
-                    <div>
-                        <Image class="h-auto max-w-full rounded-lg hover:scale-95 duration-300 cursor-pointer" src={img4} alt="" />
+                        <Image className="h-auto max-w-full rounded-lg hover:scale-95 duration-300 cursor-pointer" src={img3} alt="" />
                     </div>
 
                 </div>
-                <div class="grid gap-4">
+                <div className="grid gap-4">
                     <div>
-                        <Image class="h-auto max-w-full rounded-lg hover:scale-95 duration-300 cursor-pointer" src={img5} alt="" />
+                        <Image className="h-auto max-w-full rounded-lg hover:scale-95 duration-300 cursor-pointer" src={img2} alt="" />
                     </div>
                     <div>
-                        <Image class="h-auto max-w-full rounded-lg hover:scale-95 duration-300 cursor-pointer" src={img6} alt="" />
+                        <Image className="h-auto max-w-full rounded-lg hover:scale-95 duration-300 cursor-pointer" src={img4} alt="" />
+                    </div>
+
+                </div>
+                <div className="grid gap-4">
+                    <div>
+                        <Image className="h-auto max-w-full rounded-lg hover:scale-95 duration-300 cursor-pointer" src={img5} alt="" />
+                    </div>
+                    <div>
+                        <Image className="h-auto max-w-full rounded-lg hover:scale-95 duration-300 cursor-pointer" src={img6} alt="" />
                     </div>
                     <div>
 
                     </div>
                 </div>
-                <div class="grid gap-4">
+                <div className="grid gap-4">
                     <div>
-                        <Image class="h-auto max-w-full rounded-lg hover:scale-95 duration-300 cursor-pointer" src={img7} alt="" />
+                        <Image className="h-auto max-w-full rounded-lg hover:scale-95 duration-300 cursor-pointer" src={img7} alt="" />
                     </div>
                     <div>
-                        <Image class="h-auto max-w-full rounded-lg hover:scale-95 duration-300 cursor-pointer" src={img2} alt="" />
+                        <Image className="h-auto max-w-full rounded-lg hover:scale-95 duration-300 cursor-pointer" src={img2} alt="" />
                     </div>
 
                 </div>

@@ -122,16 +122,16 @@ const Review = () => {
                     {reviews.map((review) => (
 
                         <div className="">
-                            <div class="m-2 p-2 bg-white rounded-md shadow-lg ">
-                                <p class="leading-loose text-gray-500 overflow-y-scroll h-[140px]">
+                            <div className="m-2 p-2 bg-white rounded-md shadow-lg ">
+                                <p className="leading-loose text-gray-500 overflow-y-scroll h-[140px]">
                                     {review.review}
                                 </p>
 
-                                <div class="flex items-center mt-6 -mx-2">
-                                    <img class="object-cover mx-2 rounded-full w-14 h-14" src="https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80" alt="" />
+                                <div className="flex items-center mt-6 -mx-2">
+                                    <img className="object-cover mx-2 rounded-full w-14 h-14" src="https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80" alt="" />
 
-                                    <div class="mx-2">
-                                        <h1 class="font-semibold text-gray-800 ">
+                                    <div className="mx-2">
+                                        <h1 className="font-semibold text-gray-800 ">
                                             {review.name}
                                         </h1>
                                         <p>{review.rating}</p>

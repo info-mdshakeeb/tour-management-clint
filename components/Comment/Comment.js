@@ -2,17 +2,24 @@
 
 import { useState } from "react";
 import { FaStar } from "react-icons/fa";
+import { useDispatch } from "react-redux";
 
 const Comment = () => {
+    const dispatch = useDispatch()
     const [rating, setRating] = useState(null);
     const [hover, setHover] = useState(null);
 
     const handleSubmit = (event) => {
         event.preventDefault();
+        if (rating === null) {
+            return alert('please add a rating')
+        }
         const comment = event.target.comment.value;
         const review = { rating, comment }
-    };
 
+
+        // console.log(review);
+    };
     return (
         <form onSubmit={handleSubmit} className="p-4">
             <div className="flex items-center gap-4">
@@ -28,7 +35,7 @@ const Comment = () => {
                                     className="hidden"
                                     required
                                     name="rating"
-                                    value={ratingValue}
+                                    defaultValue={ratingValue}
                                     onClick={() => setRating(ratingValue)}
                                 />
                                 <FaStar

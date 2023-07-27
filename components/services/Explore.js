@@ -1,6 +1,6 @@
 'use client'
+import { useGetServicesQuery } from "@/redux/feature/Services/servicesApi";
 // import tours from "@/assets/data/tours";
-import { useGetServicesQuery } from "@/redux/api/apiSlice";
 import Container from "../ui/Container";
 import { PrimaryLoading } from "../ui/Loading";
 import { Subtitle, Title } from "../ui/Title";
