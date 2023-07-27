@@ -4,6 +4,7 @@ import Comment from "@/components/Comment/Comment";
 import Container from "@/components/ui/Container";
 import { PrimaryLoading } from "@/components/ui/Loading";
 import { useSingleServicesQuery } from "@/redux/feature/Services/servicesApi";
+import { useGetCommentsByIdQuery } from "@/redux/feature/commnet/commentApi";
 import Image from "next/image";
 import { AiOutlineStar } from "react-icons/ai";
 import { GrLocation } from "react-icons/gr";
@@ -12,7 +13,10 @@ import { GrLocation } from "react-icons/gr";
 const page = ({ params }) => {
 
     const { data, isLoading } = useSingleServicesQuery(params.id)
-
+    const { data: comments, isLoading: commentLoading } = useGetCommentsByIdQuery(params.id, {
+        refetchOnMountOrArgChange: true,
+        pollingInterval: 30000
+    })
 
     if (isLoading) return <>
         <div className="h-screen flex items-center justify-center">
@@ -52,54 +56,57 @@ const page = ({ params }) => {
                                         <p>{data?.data?.desc}</p>
                                     </div>
                                 </div>
-                                <div className="mt-6">
-                                    <div className="mb-3">
-                                        {/* add COMMENT */}
-                                        <Comment />
+                                {commentLoading ?
+                                    <div className="">
+                                        <PrimaryLoading />
                                     </div>
-                                    {/* show comments */}
-                                    {data?.data?.reviews?.length > 0 ? <div className="px-4 ">
-                                        <p className="font-bold ">Comments</p>
-                                        {data?.data?.reviews?.map((review, i) => (
-                                            <div key={i} className=" my-2">
-                                                <div className="flex items-center justify-between">
-                                                    <div className="flex items-center gap-4">
-                                                        <div className=" avatar">
-                                                            <div className="w-10 rounded-full">
-                                                                <Image src=""
-                                                                    width={40}
-                                                                    height={40}
-                                                                    alt="img"
-                                                                />
+                                    : <div className="mt-6">
+                                        <div className="mb-3">
+                                            {/* add COMMENT */}
+                                            <Comment service={data?.data} />
+                                        </div>
+                                        {/* show comments */}
+                                        {comments?.data?.length > 0 ? <div className="px-4 ">
+                                            <p className="font-bold ">Comments</p>
+                                            {comments?.data?.map((review, i) => (
+                                                <div key={i} className=" my-2">
+                                                    <div className="flex items-center justify-between">
+                                                        <div className="flex items-center gap-4">
+                                                            <div className=" avatar">
+                                                                <div className="w-10 rounded-full">
+                                                                    <Image src={review?.photo}
+                                                                        width={40}
+                                                                        height={40}
+                                                                        alt="img"
+                                                                    />
+                                                                </div>
+                                                            </div>
+                                                            <div className="">
+                                                                <p className="font-bold">{review?.displayName}</p>
+                                                                <p>{review?.comment}</p>
                                                             </div>
                                                         </div>
                                                         <div className="">
-                                                            <p className="font-bold">{review.name}</p>
-                                                            <p>{review.comment}</p>
-                                                        </div>
-                                                    </div>
-                                                    <div className="">
-                                                        <div className="flex items-center gap-2">
-                                                            <div className="">
-                                                                <AiOutlineStar className="text-yellow-500" /></div>
-                                                            <p>{review.rating}</p>
+                                                            <div className="flex items-center gap-2">
+                                                                <div className="">
+                                                                    <AiOutlineStar className="text-yellow-500" /></div>
+                                                                <p>{review?.rating}</p>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
 
-                                        ))}
-                                    </div>
-                                        : <div className="px-4 pb-4">
-                                            <p className="font-bold ">No Comments</p>
+                                            ))}
                                         </div>
-                                    }
-                                </div>
+                                            : <div className="px-4 pb-4">
+                                                <p className="font-bold ">No Comments</p>
+                                            </div>
+                                        }
+                                    </div>}
                             </div>
                         </div>
-
                         {/* // booking part  */}
-                        <Booking tour={data?.data} />
+                        <Booking tour={data?.data} comments={comments} />
                     </div>
                 </div>
 

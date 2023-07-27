@@ -5,14 +5,14 @@ const servicesApi = api.injectEndpoints({
         getServices: builder.query({
             query: (limit) => {
                 if (limit) {
-                    return `/api/v1/services?limit=${limit}`
+                    return `/services?limit=${limit}`
                 } else {
-                    return `/api/v1/services`
+                    return `/services`
                 }
             }
         }),
         singleServices: builder.query({
-            query: (id) => `/api/v1/services/${id}`
+            query: (id) => `/services/${id}`
         })
     })
 })

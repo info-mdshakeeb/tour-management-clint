@@ -1,13 +1,15 @@
 'use client'
 
+import { useFirebaseInfo } from "@/providers/FirebaseProvaider";
+import { useAddCommentsMutation } from "@/redux/feature/commnet/commentApi";
 import { useState } from "react";
 import { FaStar } from "react-icons/fa";
-import { useDispatch } from "react-redux";
 
-const Comment = () => {
-    const dispatch = useDispatch()
+const Comment = ({ service }) => {
     const [rating, setRating] = useState(null);
     const [hover, setHover] = useState(null);
+    const [addComments, { isError }] = useAddCommentsMutation()
+    const { user } = useFirebaseInfo()
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -15,10 +17,18 @@ const Comment = () => {
             return alert('please add a rating')
         }
         const comment = event.target.comment.value;
-        const review = { rating, comment }
+        const review = {
+            productId: service._id,
+            rating, comment,
+            photo: user.photoURL,
+            displayName: user.displayName,
+        }
+        addComments(review)
 
-
-        // console.log(review);
+        if (!isError) {
+            event.target.reset()
+            setRating(null)
+        }
     };
     return (
         <form onSubmit={handleSubmit} className="p-4">

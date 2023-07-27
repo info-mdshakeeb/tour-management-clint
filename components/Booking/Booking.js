@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { AiOutlineStar } from "react-icons/ai";
 
-const Booking = ({ tour }) => {
+const Booking = ({ tour, comments }) => {
     const [person, setPerson] = useState(1)
     const [selectedDate, setSelectedDate] = useState(new Date().toISOString().slice(0, 10))
     let price = tour?.price * person
@@ -27,6 +27,7 @@ const Booking = ({ tour }) => {
         const bookingData = { name, phone, date, person }
         console.log(bookingData);
     }
+    console.log(comments?.data);
     return (
         <div className="col-span-12 md:col-span-4 sticky top-16 max-h-[460px] ">
             <form onSubmit={handleBooking} className="p-4 border rounded-md shadow-sm">
@@ -35,7 +36,7 @@ const Booking = ({ tour }) => {
                     <div className="flex gap-2 items-center">
                         <div className="">
                             <AiOutlineStar className="text-yellow-500" /></div>
-                        {!tour?.reviews?.length ? <p>No reviews</p> : <p>{tour?.avgRating} ({tour?.reviews?.length}) </p>}
+                        {!comments?.data?.length ? <p>No reviews</p> : <p>{comments?.data[0].averageRating?.toFixed(2)} ({comments?.data?.length}) </p>}
                     </div>
                 </div>
                 <hr className="my-5" />
