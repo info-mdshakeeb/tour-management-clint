@@ -3,9 +3,6 @@ const { api } = require("@/redux/api/apiSlice");
 
 const commentApi = api.injectEndpoints({
     endpoints: (builder) => ({
-        getComments: builder.query({
-            query: () => '/comments'
-        }),
         addComments: builder.mutation({
             query: (data) => ({
                 url: '/comments/add-comment/',

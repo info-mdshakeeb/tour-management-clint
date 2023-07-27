@@ -44,7 +44,7 @@ const page = ({ params }) => {
                                         <div className="flex gap-2 items-center">
                                             <div className="">
                                                 <AiOutlineStar className="text-yellow-500" /></div>
-                                            {!data?.data?.reviews?.length ? <p>No reviews</p> : <p>{data?.data?.avgRating} ({data?.data?.reviews.length}) </p>}
+                                            {!comments?.data?.length > 0 ? <p>No reviews</p> : <p> {comments?.data[0].averageRating?.toFixed(2)}  ({comments?.data?.length}) </p>}
                                         </div>
                                     </div>
                                     <div className="flex items-center justify-between ">
