@@ -1,12 +1,14 @@
 'use client'
+import { useFirebaseInfo } from "@/providers/FirebaseProvaider";
 import Link from "next/link";
 import { usePathname } from 'next/navigation';
-import { useState } from "react";
-import { PrimaryButton } from "../ui/Buttons";
+import { BiUser } from "react-icons/bi";
+import NavAddToCart from "../AddToCart/NavAddToCart";
 import Container from "../ui/Container";
 
 const MainNav = () => {
-    const [user, setUser] = useState(true)
+
+    const { user } = useFirebaseInfo()
     const pathname = usePathname()
     const navItems =
         <>
@@ -34,16 +36,29 @@ const MainNav = () => {
                         <div className="hidden lg:flex gap-3 list-none ">
                             {navItems}
                         </div>
-                        <div className="flex items-center gap-2">
-                            <p>user</p>
-                            {!user ?
-                                <PrimaryButton link='/login' className=''>
-                                    login
-                                </PrimaryButton> :
-                                <button className=" btn btn-sm rounded-xl text-xs">
-                                    Logout
-                                </button>
-                            }
+
+                        <div className="">
+                            <NavAddToCart />
+                            <div className="dropdown ">
+                                <label tabIndex={1}
+                                    className=" transition-colors md:hover:bg-gray-50">
+                                    <div className={`flex items-center ${user?.uid && "btn btn-ghost "} `}>
+                                        <BiUser className='text-xl ' />
+                                        {user?.uid ?
+                                            <div className="text-sm ">{user.displayName}</div> :
+                                            <div className=''><Link href='/login'>Login</Link></div>
+                                        }
+                                    </div>
+                                </label>
+                                {user?.uid &&
+                                    <ul tabIndex={1} className="menu menu-compact dropdown-content w-28 md:w-32 lg:w-32  shadow bg-base-100 p-0">
+                                        <li><Link href="/dashboard" className=""> Profile</Link></li>
+                                        <hr />
+                                        <li><Link href="/orders">Orders</Link></li>
+                                        <hr />
+                                        <li><p>Logout</p></li>
+                                    </ul>}
+                            </div>
                         </div>
                     </div>
                 </div>
