@@ -1,9 +1,16 @@
+'use client'
+import { useGetCommentsByIdQuery } from "@/redux/feature/commnet/commentApi";
 import Image from "next/image";
 import Link from "next/link";
 import { AiOutlineStar } from "react-icons/ai";
 import { GrLocation } from "react-icons/gr";
 
 const Card = ({ tour }) => {
+    const { data: comments, isLoading: commentLoading } = useGetCommentsByIdQuery(tour._id, {
+        refetchOnMountOrArgChange: true,
+        pollingInterval: 30000
+    })
+
     return (
         <Link href={`/tours/${tour?._id}`} className=" hover:scale-95 ease-out duration-300">
             <div className="card card-compact  bg-base-100 shadow-xl rounded-md">
@@ -20,8 +27,7 @@ const Card = ({ tour }) => {
                         <div className="flex gap-2 items-center">
                             <div className="">
                                 <AiOutlineStar className="text-yellow-500" /></div>
-                            {!tour?.reviews?.length ? <p>No reviews</p> : <p>{tour?.avgRating} ({tour?.reviews.length}) </p>}
-
+                            {!comments?.data?.length > 0 ? <p>No reviews</p> : <p> {comments?.data[0].averageRating?.toFixed(2)}  ({comments?.data?.length}) </p>}
                         </div>
                     </div>
                     <h2 className="font-bold my-2">{tour?.title}</h2>

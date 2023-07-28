@@ -9,6 +9,8 @@ import Card from "./Card";
 const Explore = () => {
     const { data, error, isLoading } = useGetServicesQuery(8)
 
+    console.log(data);
+
     if (isLoading) return <>
         <div className="min-h-[90vh]">
             <PrimaryLoading />
