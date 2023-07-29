@@ -4,6 +4,7 @@ import AlertMessage from "@/Hooks/Alert";
 import ImageUpload from "@/components/ImgUpload/ImgUpload";
 import FormTemplate from "@/components/ui/FormTemplate";
 import { useFirebaseInfo } from "@/providers/FirebaseProvaider";
+import { usePostUsersMutation } from "@/redux/feature/users/usersApi";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -16,6 +17,7 @@ export default function resister() {
     const [imageUrl, setImageUrl] = useState('');
     const { register, handleSubmit, formState: { errors }, reset } = useForm();
     const { CreateUserEP, updateProfilePic } = useFirebaseInfo()
+    const [postUsers, { isError, isLoading, isSuccess }] = usePostUsersMutation()
 
     const tableData = [
         { label: 'name', name: 'name', type: 'name', placeholder: 'name', error: errors.name },
@@ -23,31 +25,37 @@ export default function resister() {
         { label: 'password', name: 'password', type: 'password', placeholder: 'password', error: errors.password }]
 
     const onSubmit = (data) => {
-        const resisterData = {
-            name: data.name,
-            email: data.email,
-            password: data.password,
-            imageUrl
-        }
         CreateUserEP(data.email, data.password)
-            .then(rs =>
+            .then(rs => {
                 updateProfilePic(data.name, imageUrl)
-                    .then(res => CreateFn("create account", true))
-            ).catch(err =>
-                CreateFn(err.message, false)
-            )
+                    .then(res => {
+                        const addedUser = {
+                            name: data.name,
+                            email: data.email,
+                            password: data.password,
+                            pic: imageUrl,
+                            uid: rs?.user?.uid,
+                            verified: rs.user?.emailVerified,
+                        };
+                        addToDb(addedUser)
+                    })
+            }).catch(err => {
+                console.log(err)
+                errorMessage(err.message)
+            })
     }
 
-    const CreateFn = (message, type) => {
-        if (type) {
-            successMessage(message)
+    const addToDb = async (user) => {
+        const data = await postUsers(user)
+        if (data.data.success) {
+            localStorage.setItem('userId', data.data.data._id)
+            successMessage("account created")
             reset()
             setImageUrl('')
             router.push("/");
-        } else {
-            errorMessage(message)
         }
     }
+
 
     return (
         <div className="flex justify-center items-center h-screen">

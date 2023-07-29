@@ -27,7 +27,7 @@ const Booking = ({ tour, comments }) => {
         const bookingData = { name, phone, date, person }
         console.log(bookingData);
     }
-    console.log(comments?.data);
+
     return (
         <div className="col-span-12 md:col-span-4 sticky top-16 max-h-[460px] ">
             <form onSubmit={handleBooking} className="p-4 border rounded-md shadow-sm">

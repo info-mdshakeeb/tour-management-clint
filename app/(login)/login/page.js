@@ -2,11 +2,11 @@
 import AlertMessage from "@/Hooks/Alert";
 import FormTemplate from "@/components/ui/FormTemplate";
 import { useFirebaseInfo } from "@/providers/FirebaseProvaider";
+import { usePostUsersMutation } from "@/redux/feature/users/usersApi";
 import Link from "next/link";
 import { useRouter } from 'next/navigation';
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { useSelector } from "react-redux";
 
 export default function login() {
 
@@ -14,8 +14,8 @@ export default function login() {
     const router = useRouter()
     const { register, handleSubmit, formState: { errors }, reset } = useForm();
     const { GoogleLogin, loginEmail } = useFirebaseInfo()
-    const { location } = useSelector(state => state.utils)
 
+    const [postUsers, { isError, isLoading, isSuccess }] = usePostUsersMutation()
 
 
     const { successMessage, errorMessage } = AlertMessage()
@@ -43,12 +43,41 @@ export default function login() {
         const email = data.email
         const password = data.password
         loginEmail(email, password)
-            .then(() => { loginFn("success", true) }).catch(error => loginFn(error.message, false))
+            .then((res) => {
+                const addedUser = {
+                    name: res.user.displayName,
+                    email: res.user.email,
+                    pic: res.user.photoURL,
+                    uid: res.user.uid,
+                    verified: res.user.emailVerified,
+                };
+                addToDb(addedUser)
+            }).catch(error => errorMessage(error.message))
     }
     // google login 
     const handleGoogleLogin = () => {
         GoogleLogin()
-            .then(() => { loginFn("success", true) }).catch(error => loginFn(error.message, false))
+            .then((res) => {
+                const addedUser = {
+                    name: res.user.displayName,
+                    email: res.user.email,
+                    pic: res.user.photoURL,
+                    uid: res.user.uid,
+                    verified: res.user.emailVerified,
+                };
+                addToDb(addedUser)
+
+            }).catch(error => errorMessage(error.message))
+    }
+    const addToDb = async (user) => {
+        const data = await postUsers(user)
+        console.log(data);
+        if (data.data.success) {
+            localStorage.setItem('userId', data.data.data._id)
+            successMessage("account login successfully")
+            reset()
+            router.push("/");
+        }
     }
     const loginFn = (message, type) => {
         if (type) {
