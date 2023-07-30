@@ -6,7 +6,7 @@ import { PrimaryLoading } from "../ui/Loading";
 const NavAddToCart = () => {
     const userId = typeof window !== 'undefined' ? localStorage.getItem('userId') : null;
     const { data, isLoading } = useGetCartQuery(userId)
-    console.log(data?.data);
+
     return (
         <div className="dropdown">
             {isLoading ? <PrimaryLoading /> : <>
@@ -16,17 +16,26 @@ const NavAddToCart = () => {
                         <span className="badge badge-sm indicator-item">{data?.data.length}</span>
                     </div>
                 </label>
-                <div tabIndex={0} className="mt-3  dropdown-content w-52 bg-base-100 shadow ">
+                <div tabIndex={0} className="mt-1  dropdown-content w-52 bg-base-100 shadow ">
                     <div className="shadow-md bg-orange-100 text-black">
                         <div className="p-3 flex gap-2 items-center">
-                            <span className="font-bold text-lg">{data?.data.length} </span>
-                            <span className="">total: 100 tk</span>
+                            <span className="font-bold">Selected Place : {data?.data.length} </span>
+                            {/* <span className="">person:{data?.}</span> */}
                         </div>
-                        {/* {data?.data  <div className="">
-
-                        </div>} */}
+                        <div className="mb-2">
+                            {data?.data.map((item, index) => (
+                                <Link href={`/tours/${item?.tourId}`} key={index} className="p-1 px-3 flex gap-2 items-center border-b ">
+                                    <div className="flex gap-1 items-center justify-center">
+                                        {item.tourPic ? <img src={item.tourPic} alt="" className="w-5 h-5 rounded-full" /> : <img src="/images/placeholder.png" alt="" className="w-5 h-5 rounded-full" />}
+                                        <p className="text-xs  hover:scale-95 duration-300">{item.tourName}
+                                            -  <span className="text-xs">({item.person})</span>
+                                        </p>
+                                    </div>
+                                </Link>
+                            ))}
+                        </div>
                         <div className="card-actions">
-                            <Link href='/orders' className="btn btn-primary btn-block btn-sm rounded-none">View cart</Link>
+                            <Link href='/orders' className="btn btn-primary btn-block btn-sm rounded-none">Payment Page</Link>
                         </div>
                     </div>
                 </div>
