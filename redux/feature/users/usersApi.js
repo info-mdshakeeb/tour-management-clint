@@ -8,7 +8,10 @@ const userApi = api.injectEndpoints({
                 method: "POST",
                 body: data
             })
+        }),
+        singleUser: builder.query({
+            query: (id) => `/user/${id}`
         })
     })
 })
-export const { usePostUsersMutation } = userApi
+export const { usePostUsersMutation, useSingleUserQuery } = userApi

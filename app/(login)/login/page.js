@@ -79,18 +79,6 @@ export default function login() {
             router.push("/");
         }
     }
-    const loginFn = (message, type) => {
-        if (type) {
-            successMessage(message)
-            router.push('/')
-            // if (location) {
-            //     router.push(location);
-            // }
-            reset()
-        } else {
-            errorMessage(message)
-        }
-    }
 
     const tableData = [
         { label: 'email', name: 'email', type: 'email', placeholder: 'email', def: email, error: errors.email },

@@ -1,9 +1,15 @@
 'use client'
+import { usePostCartMutation } from "@/redux/feature/cart/cartApi";
+import { useSingleUserQuery } from "@/redux/feature/users/usersApi";
 import { useState } from "react";
 import { AiOutlineStar } from "react-icons/ai";
+import { PrimaryLoading } from "../ui/Loading";
 
 const Booking = ({ tour, comments }) => {
     const [person, setPerson] = useState(1)
+    const { data } = useSingleUserQuery(localStorage.getItem('userId'))
+    const [postCart, { isSuccess, isLoading }] = usePostCartMutation()
+
     const [selectedDate, setSelectedDate] = useState(new Date().toISOString().slice(0, 10))
     let price = tour?.price * person
     let services = tour?.price * 10 / 100 * person
@@ -19,13 +25,21 @@ const Booking = ({ tour, comments }) => {
             alert("Selected date cannot be less than the present day.");
             return;
         }
-
         const form = e.target
         const name = form.name.value
         const phone = form.phone.value
         const date = form.date.value
-        const bookingData = { name, phone, date, person }
-        console.log(bookingData);
+        const bookingData = {
+            userName: data.data.name,
+            userEmail: data.data.email,
+            userId: data.data._id,
+            tourId: tour?._id,
+            tourPic: tour.photo,
+            tourName: tour?.title,
+            destination: tour?.distance,
+            name, phone, date, person
+        };
+        postCart(bookingData)
     }
 
     return (
@@ -40,13 +54,12 @@ const Booking = ({ tour, comments }) => {
                     </div>
                 </div>
                 <hr className="my-5" />
-
                 <div className="">
                     <h1 className="text-md font-bold">
                         Information
                     </h1>
                     <div className="border p-4 flex flex-col gap-4 mt-2">
-                        <input required maxLength={30} placeholder="Name" name="name" type="text" className="w-full outline-none border-b" />
+                        <input required maxLength={30} placeholder="Name" name="name" type="text" className="w-full outline-none border-b" defaultValue={data?.data?.name} />
                         <input required maxLength={30} placeholder="Phone Number" name="phone" type="number" className="w-full outline-none border-b" />
                         <div className="flex gap-2">
                             <input
@@ -84,7 +97,11 @@ const Booking = ({ tour, comments }) => {
                 <div className="duration-300">
                     {person > 0 ?
                         <button
-                            className="btn btn-warning w-full mt-4 btn-sm">Add to Cart Now</button>
+                            className="btn btn-warning w-full mt-4 btn-sm">
+                            {isLoading ? <PrimaryLoading /> :
+                                ' Add to Cart Now'}
+
+                        </button>
                         :
                         <button
                             className="btn btn-warning w-full mt-4 btn-sm" disabled>book Now</button>
