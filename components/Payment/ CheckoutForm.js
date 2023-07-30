@@ -4,6 +4,7 @@ import { useState } from 'react';
 
 
 import AlertMessage from '@/Hooks/Alert';
+import { useGetCartQuery } from '@/redux/feature/cart/cartApi';
 
 const CheckoutForm = ({ product, setProduct }) => {
     const userId = typeof window !== 'undefined' ? localStorage.getItem('userId') : null;
@@ -82,7 +83,7 @@ const CheckoutForm = ({ product, setProduct }) => {
             console.log(confirmPayment);
         }
     };
-    if (isLoading) return <div className='text-center mt-10'>Loading...</div>
+    // if (isLoading) return <div className='text-center mt-10'>Loading...</div>
 
     return (
         <form onSubmit={handleSubmit}>

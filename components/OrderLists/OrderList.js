@@ -2,13 +2,15 @@
 import { useSingleServicesQuery } from "@/redux/feature/Services/servicesApi";
 import { useDeleteCartMutation } from "@/redux/feature/cart/cartApi";
 import Link from "next/link";
+import { useState } from "react";
 import { BsThreeDotsVertical } from "react-icons/bs";
+import PaymentModal from "../Payment/PaymentModal";
 import { PrimaryLoading } from "../ui/Loading";
 
 const OrderList = ({ item }) => {
     const { data: services, isLoading } = useSingleServicesQuery(item?.tourId)
     const [deleteCart, isSuccess] = useDeleteCartMutation()
-
+    const [product, setProduct] = useState(null)
     if (isLoading) {
         return <>
             <PrimaryLoading />
@@ -42,10 +44,15 @@ const OrderList = ({ item }) => {
                     onClick={() => deleteCart(item?._id)}
                     htmlFor="confirmation-modal" className="btn btn-warning btn-xs ml-3 lg:ml-0"> x</label>
                 <label
-                    // onClick={() => setProduct(item)}
+                    onClick={() => setProduct(item)}
                     htmlFor="my-modal-3" className='btn btn-sm btn-warning'>PAY</label>
                 <BsThreeDotsVertical />
             </div>
+
+            {product &&
+                <PaymentModal product={product} setProduct={setProduct} />
+            }
+
         </li>
     );
 };
