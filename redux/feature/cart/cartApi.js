@@ -14,7 +14,14 @@ const cardApi = api.injectEndpoints({
         getCart: builder.query({
             query: (id) => `/services/carts/${id}`,
             providesTags: ['cart']
+        }),
+        deleteCart: builder.mutation({
+            query: (id) => ({
+                url: `/services/delete/${id}`,
+                method: "DELETE",
+            }),
+            invalidatesTags: ['cart']
         })
     })
 })
-export const { usePostCartMutation, useGetCartQuery } = cardApi
+export const { usePostCartMutation, useGetCartQuery, useDeleteCartMutation } = cardApi
