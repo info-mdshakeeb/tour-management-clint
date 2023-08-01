@@ -1,15 +1,13 @@
 'use client'
+import AlertMessage from '@/Hooks/Alert';
+import { useDeleteCartMutation } from '@/redux/feature/cart/cartApi';
+import { useAddPaymentMutation, useCreatePaymentIntentMutation } from '@/redux/feature/payment/paymentApi';
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
 import { useEffect, useState } from 'react';
 
-
-import AlertMessage from '@/Hooks/Alert';
-import { useDeleteCartMutation, useGetCartQuery } from '@/redux/feature/cart/cartApi';
-import { useAddPaymentMutation, useCreatePaymentIntentMutation } from '@/redux/feature/payment/paymentApi';
-
 const CheckoutForm = ({ product, setProduct }) => {
     const userId = typeof window !== 'undefined' ? localStorage.getItem('userId') : null;
-    const { data } = useGetCartQuery(userId)
+    // const { data } = useGetCartQuery(userId)
     const { successMessage } = AlertMessage()
     const stripe = useStripe();
     const elements = useElements();

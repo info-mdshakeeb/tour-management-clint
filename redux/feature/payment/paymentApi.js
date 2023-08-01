@@ -18,7 +18,7 @@ const paymentApi = api.injectEndpoints({
             }),
         }),
         paymentByUserId: builder.query({
-            query: (userId) => `/payment/${userId}`,
+            query: (id) => `/payment/${id}`,
         }),
 
 
