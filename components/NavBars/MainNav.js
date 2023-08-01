@@ -13,9 +13,9 @@ const MainNav = () => {
     const navItems =
         <>
             <li><Link className={` ${pathname === "/" ? 'text-gray-900' : ''} text-gray-400 hover:text-gray-900 duration-300`} href='/'>Home</Link></li>
-            <li><Link className={` ${pathname === "/about" ? 'text-gray-900' : ''}text-gray-400 hover:text-gray-900 duration-300`} href={'/about'}>About</Link></li>
+            {/* <li><Link className={` ${pathname === "/about" ? 'text-gray-900' : ''}text-gray-400 hover:text-gray-900 duration-300`} href={'/about'}>About</Link></li> */}
             <li><Link className={` ${pathname === "/tours" ? 'text-gray-900' : ''} text-gray-400 hover:text-gray-900 duration-300`} href={'/tours'}>Tours</Link></li>
-            <li><Link className={` ${pathname === "/dashboard" ? 'text-gray-900' : ''} text-gray-400 hover:text-gray-900 duration-300`} href={'/dashboard'}>dashboard</Link></li>
+            {/* <li><Link className={` ${pathname === "/dashboard" ? 'text-gray-900' : ''} text-gray-400 hover:text-gray-900 duration-300`} href={'/dashboard'}>dashboard</Link></li> */}
         </>
     return (
         <div className="sticky top-0  shadow-md z-50 bg-base-100 ">
@@ -38,7 +38,8 @@ const MainNav = () => {
                         </div>
 
                         <div className="">
-                            <NavAddToCart />
+                            {user &&
+                                <NavAddToCart />}
                             <div className="dropdown ">
                                 <label tabIndex={1}
                                     className=" transition-colors md:hover:bg-gray-50">

@@ -26,11 +26,6 @@ const HistoryList = ({ item }) => {
                 {item.paymentID}
 
             </span>
-            <div className='flex   justify-between'>
-
-            </div>
-
-
 
         </li>
     );

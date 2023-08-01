@@ -6,9 +6,7 @@ import Link from "next/link";
 
 const page = () => {
     const userId = typeof window !== 'undefined' ? localStorage.getItem('userId') : null;
-
     const { data } = usePaymentByUserIdQuery(userId)
-    console.log(data);
     return (
         <div className="bg-base-100 min-h-[calc(100vh_-_280px)]">
             <Container className="py-5 ">

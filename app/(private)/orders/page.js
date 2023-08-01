@@ -37,7 +37,7 @@ const page = () => {
                                     <span className='flex lg:-ml-12'></span>
                                     <p className='hidden md:flex '></p>
                                     <div className='flex items-center justify-between'>
-                                        <Link href={`/dashboard/orders/payment-history`}
+                                        <Link href={`/history`}
                                             className='btn btn-sm btn-warning ml-6'>Payment history</Link>
                                     </div>
                                 </li>
