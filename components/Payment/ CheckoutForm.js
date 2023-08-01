@@ -1,10 +1,11 @@
 'use client'
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 
 import AlertMessage from '@/Hooks/Alert';
-import { useGetCartQuery } from '@/redux/feature/cart/cartApi';
+import { useDeleteCartMutation, useGetCartQuery } from '@/redux/feature/cart/cartApi';
+import { useAddPaymentMutation, useCreatePaymentIntentMutation } from '@/redux/feature/payment/paymentApi';
 
 const CheckoutForm = ({ product, setProduct }) => {
     const userId = typeof window !== 'undefined' ? localStorage.getItem('userId') : null;
@@ -15,21 +16,19 @@ const CheckoutForm = ({ product, setProduct }) => {
     const [error, setError] = useState(null);
     const [clientSecret, setClientSecret] = useState("");
 
+    const [createPaymentIntent] = useCreatePaymentIntentMutation()
+    const [addPayment] = useAddPaymentMutation()
+    const [deleteCart] = useDeleteCartMutation()
 
-
-    const handelDelete = (product) => {
-        fetch(`https://iconic-server-v2.vercel.app/api/v2/cart/payment?email=${user?.email}`, {
-            method: 'DELETE',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ product })
-        })
-            .then(res => res.json())
-            .then(data => {
-                setProduct(null)
+    useEffect(() => {
+        createPaymentIntent({ price: product?.total })
+            .then(res => {
+                setClientSecret(res.data.clientSecret)
             })
-    }
+    }, [product])
+
+    // console.log(product.tourId);
+
     const addToDb = (product) => {
         fetch(`https://iconic-server-v2.vercel.app/api/v2/cart/payment/confirmed?email=${user?.email}`, {
             method: 'POST',
@@ -47,8 +46,7 @@ const CheckoutForm = ({ product, setProduct }) => {
     }
     const handleSubmit = async (event) => {
         event.preventDefault();
-        const form = event.target;
-        const address = form.address.value;
+
         if (!stripe || !elements) { return; }
         const card = elements.getElement(CardElement);
 
@@ -75,16 +73,16 @@ const CheckoutForm = ({ product, setProduct }) => {
         if (paymentIntent.status === "succeeded") {
             const confirmPayment = {
                 paymentID: paymentIntent.id,
-                address,
                 ...product,
-                data: new Date().toDateString(),
-                status: 'Confirmed',
+                paymentDate: new Date().toDateString(),
             }
-            console.log(confirmPayment);
+            addPayment(confirmPayment)
+                .then(res => {
+                    successMessage('Payment Successful')
+                    deleteCart(product?._id)
+                })
         }
     };
-    // if (isLoading) return <div className='text-center mt-10'>Loading...</div>
-
     return (
         <form onSubmit={handleSubmit}>
             <div className=" ">

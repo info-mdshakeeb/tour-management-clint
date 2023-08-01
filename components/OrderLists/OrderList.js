@@ -8,14 +8,12 @@ import PaymentModal from "../Payment/PaymentModal";
 import { PrimaryLoading } from "../ui/Loading";
 
 const OrderList = ({ item }) => {
+
     const { data: services, isLoading } = useSingleServicesQuery(item?.tourId)
     const [deleteCart, isSuccess] = useDeleteCartMutation()
     const [product, setProduct] = useState(null)
     if (isLoading) {
-        return <>
-            <PrimaryLoading />
-        </>
-
+        return <><PrimaryLoading /> </>
     }
 
     // console.log(services);

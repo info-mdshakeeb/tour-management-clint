@@ -6,6 +6,7 @@ import CheckoutForm from './ CheckoutForm';
 const PaymentModal = ({ product, setProduct }) => {
 
     const stripePromise = loadStripe('pk_test_51M6D28BetmksUXSc82ENaSvliF6HG6MDJv4cL2aTFQDKZVA00yZpVctAPBfcXjQq7PaRET9GUVg5DJVm7qCdbBDZ00c5vWBKMp');
+
     return (
         <div>
             <input type="checkbox" id="my-modal-3" className="modal-toggle" />

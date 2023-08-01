@@ -3,7 +3,6 @@ import { usePostCartMutation } from "@/redux/feature/cart/cartApi";
 import { useSingleUserQuery } from "@/redux/feature/users/usersApi";
 import { useState } from "react";
 import { AiOutlineStar } from "react-icons/ai";
-import { PrimaryLoading } from "../ui/Loading";
 
 const Booking = ({ tour, comments }) => {
     const [person, setPerson] = useState(1)
@@ -37,7 +36,7 @@ const Booking = ({ tour, comments }) => {
             tourPic: tour.photo,
             tourName: tour?.title,
             destination: tour?.distance,
-            name, phone, date, person
+            name, phone, date, person, price, services, total
         };
         postCart(bookingData)
     }
@@ -98,7 +97,7 @@ const Booking = ({ tour, comments }) => {
                     {person > 0 ?
                         <button
                             className="btn btn-warning w-full mt-4 btn-sm">
-                            {isLoading ? <PrimaryLoading /> :
+                            {isLoading ? "Loading..." :
                                 ' Add to Cart Now'}
 
                         </button>

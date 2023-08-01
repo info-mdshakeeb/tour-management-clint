@@ -22,23 +22,21 @@ const page = () => {
                                 <span className='hidden md:grid'>total</span>
                                 <span className='sm:text-left text-left'>Action</span>
                             </div>
-                            <ul>
+                            {data?.data?.length ? <ul>
                                 {data?.data?.map((item, i) =>
                                     <OrderList key={i} item={item} />
                                 )}
-                            </ul>
+                            </ul> :
+                                <div className='text-center text-2xl font-bold text-gray-500 my-10'>No Orders</div>
+                            }
                             <div className="">
                                 <li className=' rounded-lg my-3 p-2 grid md:grid-cols-4 grid-cols-2 items-center justify-between cursor-pointer'>
                                     <div className="hidden md:flex items-center space-x-2">
                                         <Link className='btn btn-sm btn-primary mt-2' href={`/tours`}>BacK to Tours</Link>
                                     </div>
-
-                                    <span className='flex lg:-ml-12'>
-
-                                    </span>
+                                    <span className='flex lg:-ml-12'></span>
                                     <p className='hidden md:flex '></p>
                                     <div className='flex items-center justify-between'>
-
                                         <Link href={`/dashboard/orders/payment-history`}
                                             className='btn btn-sm btn-warning ml-6'>Payment history</Link>
                                     </div>
