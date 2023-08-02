@@ -3,12 +3,13 @@ import { useFirebaseInfo } from "@/providers/FirebaseProvaider";
 import Link from "next/link";
 import { usePathname } from 'next/navigation';
 import { BiUser } from "react-icons/bi";
+import Swal from "sweetalert2";
 import NavAddToCart from "../AddToCart/NavAddToCart";
 import Container from "../ui/Container";
 
 const MainNav = () => {
 
-    const { user } = useFirebaseInfo()
+    const { user, logout } = useFirebaseInfo()
     const pathname = usePathname()
     const navItems =
         <>
@@ -17,6 +18,31 @@ const MainNav = () => {
             <li><Link className={` ${pathname === "/tours" ? 'text-gray-900' : ''} text-gray-400 hover:text-gray-900 duration-300`} href={'/tours'}>Tours</Link></li>
             {/* <li><Link className={` ${pathname === "/dashboard" ? 'text-gray-900' : ''} text-gray-400 hover:text-gray-900 duration-300`} href={'/dashboard'}>dashboard</Link></li> */}
         </>
+
+    const handleLLogout = () => {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You want to logout !",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: `Logout`
+        }).then((result) => {
+            if (result.isConfirmed) {
+                logout().then(re => {
+                    Swal.fire({
+                        icon: 'success',
+                        title: `LogOut SuccessFull`,
+                        showConfirmButton: false, timer: 1500
+                    })
+                    localStorage.removeItem('userId')
+                })
+            } else {
+            }
+        })
+    }
+
     return (
         <div className="sticky top-0  shadow-md z-50 bg-base-100 ">
             <Container className=" ">
@@ -57,7 +83,9 @@ const MainNav = () => {
                                         <hr />
                                         <li><Link href="/orders">Orders</Link></li>
                                         <hr />
-                                        <li><p>Logout</p></li>
+                                        <li
+                                            onClick={handleLLogout}
+                                        ><p>Logout</p></li>
                                     </ul>}
                             </div>
                         </div>

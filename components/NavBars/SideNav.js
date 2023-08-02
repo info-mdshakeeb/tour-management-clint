@@ -64,6 +64,7 @@ export default function SideNav() {
                         title: `LogOut SuccessFull`,
                         showConfirmButton: false, timer: 1500
                     })
+                    localStorage.removeItem('userId')
                 })
             } else {
             }
