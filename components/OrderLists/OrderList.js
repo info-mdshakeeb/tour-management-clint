@@ -1,20 +1,24 @@
 'use client'
 import { useSingleServicesQuery } from "@/redux/feature/Services/servicesApi";
 import { useDeleteCartMutation } from "@/redux/feature/cart/cartApi";
+import { setCart } from "@/redux/feature/cart/cartSlice";
 import Link from "next/link";
-import { useState } from "react";
 import { BsThreeDotsVertical } from "react-icons/bs";
+import { useDispatch, useSelector } from "react-redux";
 import PaymentModal from "../Payment/PaymentModal";
 import { PrimaryLoading } from "../ui/Loading";
 
 const OrderList = ({ item }) => {
 
     const { data: services, isLoading } = useSingleServicesQuery(item?.tourId)
+    const { product } = useSelector(state => state.cart)
     const [deleteCart, isSuccess] = useDeleteCartMutation()
-    const [product, setProduct] = useState(null)
     if (isLoading) {
         return <><PrimaryLoading /> </>
     }
+
+    const dispatch = useDispatch()
+
 
     // console.log(services);
     return (
@@ -42,15 +46,14 @@ const OrderList = ({ item }) => {
                     onClick={() => deleteCart(item?._id)}
                     htmlFor="confirmation-modal" className="btn btn-warning btn-xs ml-3 lg:ml-0"> x</label>
                 <label
-                    onClick={() => setProduct(item)}
+                    onClick={() => dispatch(setCart(item))}
                     htmlFor="my-modal-3" className='btn btn-sm btn-warning'>PAY</label>
                 <BsThreeDotsVertical />
             </div>
 
             {product &&
-                <PaymentModal product={product} setProduct={setProduct} />
+                <PaymentModal product={product} />
             }
-
         </li>
     );
 };

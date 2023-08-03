@@ -4,10 +4,11 @@ import { useDeleteCartMutation } from '@/redux/feature/cart/cartApi';
 import { useAddPaymentMutation, useCreatePaymentIntentMutation } from '@/redux/feature/payment/paymentApi';
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
 import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 
-const CheckoutForm = ({ product, setProduct }) => {
-    const userId = typeof window !== 'undefined' ? localStorage.getItem('userId') : null;
-    // const { data } = useGetCartQuery(userId)
+const CheckoutForm = ({ }) => {
+    const { product } = useSelector(state => state.cart)
+    console.log(product);
     const { successMessage } = AlertMessage()
     const stripe = useStripe();
     const elements = useElements();
@@ -27,21 +28,6 @@ const CheckoutForm = ({ product, setProduct }) => {
 
     // console.log(product.tourId);
 
-    const addToDb = (product) => {
-        fetch(`https://iconic-server-v2.vercel.app/api/v2/cart/payment/confirmed?email=${user?.email}`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(product)
-        })
-            .then(res => res.json())
-            .then(data => {
-                setProduct(null)
-                handelDelete(product)
-                successMessage('Payment Successful')
-            })
-    }
     const handleSubmit = async (event) => {
         event.preventDefault();
 
