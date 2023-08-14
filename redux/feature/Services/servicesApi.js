@@ -13,7 +13,21 @@ const servicesApi = api.injectEndpoints({
         }),
         singleServices: builder.query({
             query: (id) => `/services/${id}`
+        }),
+        searchServices: builder.query({
+            query: ({ city, distance }) => {
+                if (city && distance) {
+                    return `/services/search-services?city=${city}&distance=${distance}`
+                } else if (city) {
+                    return `/services/search-services?city=${city}`
+                } else if (distance) {
+                    return `/services/search-services?distance=${distance}`
+                } else {
+                    return `/services/search-services`
+                }
+            }
         })
     })
 })
-export const { useGetServicesQuery, useSingleServicesQuery } = servicesApi
+
+export const { useGetServicesQuery, useSingleServicesQuery, useSearchServicesQuery } = servicesApi

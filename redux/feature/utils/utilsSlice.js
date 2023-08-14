@@ -15,7 +15,6 @@ const utilsSlice = createSlice({
         },
         redirectToRight: (state, action) => {
             state.redirectToRight = action.payload
-            console.log(action.payload);
         }
     }
 })

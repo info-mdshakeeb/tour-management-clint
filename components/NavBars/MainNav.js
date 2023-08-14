@@ -38,8 +38,7 @@ const MainNav = () => {
                     })
                     localStorage.removeItem('userId')
                 })
-            } else {
-            }
+            } else { }
         })
     }
 
