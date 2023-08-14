@@ -9,17 +9,10 @@ import Card from "./Card";
 const Explore = () => {
     const { data, error, isLoading } = useGetServicesQuery(8)
 
-    if (isLoading) return <>
-        <div className="min-h-[90vh]">
-            <PrimaryLoading />
-        </div>
-    </>
-
     if (error) return <>
         <div className="min-h-[90vh] flex justify-center items-center">
             data is not loaded
         </div>
-
     </>
 
     return (
@@ -32,9 +25,9 @@ const Explore = () => {
                     Our Feature Tours
                 </Title>
             </div>
-            <div className="grid grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-4">
+            {isLoading ? <PrimaryLoading /> : <div className="grid grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-4">
                 {data?.data?.map(tour => <Card key={tour.id} tour={tour} />)}
-            </div>
+            </div>}
         </Container>
     );
 };
