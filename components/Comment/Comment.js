@@ -1,7 +1,7 @@
 'use client'
 
 import { useFirebaseInfo } from "@/providers/FirebaseProvaider";
-import { useAddCommentsMutation } from "@/redux/feature/commnet/commentApi";
+import { useAddCommentsMutation } from "@/redux/feature/comment/commentApi";
 import { useState } from "react";
 import { FaStar } from "react-icons/fa";
 

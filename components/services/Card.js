@@ -1,5 +1,5 @@
 'use client'
-import { useGetCommentsByIdQuery } from "@/redux/feature/commnet/commentApi";
+import { useGetCommentsByIdQuery } from "@/redux/feature/comment/commentApi";
 import Image from "next/image";
 import Link from "next/link";
 import { AiOutlineStar } from "react-icons/ai";

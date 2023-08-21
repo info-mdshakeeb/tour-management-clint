@@ -78,7 +78,7 @@ const MainNav = () => {
                                 </label>
                                 {user?.uid &&
                                     <ul tabIndex={1} className="menu menu-compact dropdown-content w-28 md:w-32 lg:w-32  shadow bg-base-100 p-0">
-                                        <li><Link href="/dashboard" className=""> Profile</Link></li>
+                                        {/* <li><Link href="/dashboard" className=""> Profile</Link></li> */}
                                         <hr />
                                         <li><Link href="/orders">Orders</Link></li>
                                         <hr />

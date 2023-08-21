@@ -4,7 +4,7 @@ import Comment from "@/components/Comment/Comment";
 import Container from "@/components/ui/Container";
 import { PrimaryLoading } from "@/components/ui/Loading";
 import { useSingleServicesQuery } from "@/redux/feature/Services/servicesApi";
-import { useGetCommentsByIdQuery } from "@/redux/feature/commnet/commentApi";
+import { useGetCommentsByIdQuery } from "@/redux/feature/comment/commentApi";
 import Image from "next/image";
 import { AiOutlineStar } from "react-icons/ai";
 import { GrLocation } from "react-icons/gr";
@@ -29,7 +29,7 @@ const page = ({ params }) => {
                 <div className="">
                     <div className=" grid grid-cols-12 relative gap-4">
                         <div className="col-span-12 md:col-span-8">
-                            <div className="">
+                            <div className="col-span-12">
                                 <figure><Image src={data?.data?.photo}
                                     width={800}
                                     height={500}
